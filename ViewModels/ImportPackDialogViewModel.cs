@@ -44,7 +44,6 @@ namespace Labb3.ViewModels
 
         public ObservableCollection<TriviaCategory> Categories { get; set; } = new();
         public ObservableCollection<string> Difficulties { get; set; } = new() { "Any", "Easy", "Medium", "Hard" };
-        public ObservableCollection<string> QuestionTypes { get; set; } = new() { "Any", "Multiple Choice", "True/False" };
 
         public int NumberOfQuestions
             {
