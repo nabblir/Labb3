@@ -1,14 +1,67 @@
-﻿<Page x:Class="Labb3.Dialogs.ImportPackDialog"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Labb3.Dialogs"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="ImportPackDialog">
+﻿<Window x:Class="Labb3.Dialogs.ImportPackDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Labb3.Dialogs"
+        mc:Ignorable="d"
+        x:ClassModifier="internal"
+        Title="Import Question Pack from API" 
+        Height="500" 
+        Width="600"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
 
-    <Grid>
-        
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Import questions from Open Trivia Database" FontSize="16" FontWeight="Bold" Margin="0,0,0,20"/>
+        <!-- PackName Selection -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Pack Name:" Width="150" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding PackName, UpdateSourceTrigger=PropertyChanged}" Width="300"/>
+        </StackPanel>
+        <!-- Amount Selection -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Number of Questions:" Width="150" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding NumberOfQuestions, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+        </StackPanel>
+        <!-- Category Selection -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Category:" Width="150" VerticalAlignment="Center"/>
+            <ComboBox ItemsSource="{Binding Categories}" 
+                      SelectedItem="{Binding SelectedCategory}"
+                      DisplayMemberPath="name"
+                      Width="300"/>
+        </StackPanel>
+        <!-- Difficulty Selection -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Difficulty:" Width="150" VerticalAlignment="Center"/>
+            <ComboBox ItemsSource="{Binding Difficulties}" 
+                      SelectedItem="{Binding SelectedDifficulty}"
+                      Width="300"/>
+        </StackPanel>
+        <!-- Filler and FeedbackMessage -->
+            <TextBlock Grid.Row="6" 
+                   Text="{Binding StatusMessage}" 
+                   TextWrapping="Wrap"
+                   Foreground="{Binding StatusColor}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="0,20,0,0"/>
+
+        <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Import" Command="{Binding ImportCommand}" Width="100" Margin="0,0,10,0"/>
+            <Button Content="Cancel" IsCancel="True" Width="100"/>
+        </StackPanel>
     </Grid>
-</Page>
+</Window>

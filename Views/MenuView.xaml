@@ -1,41 +1,65 @@
 ﻿<UserControl x:Class="Labb3.Views.MenuView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-             xmlns:local="clr-namespace:Labb3.Views"
-             mc:Ignorable="d" d:DesignWidth="800" Height="20">
-    <!-- Menu "CSS" Styles -->
-    <UserControl.Resources>
-        <Style x:Key="MenuTriggers" TargetType="{x:Type MenuItem}">
-            <Style.Setters>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="FontStyle" Value="Normal"/>
-            </Style.Setters>
-            <!-- Triggers-->
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="FontSize" Value="13"/>
-                    <Setter Property="FontStyle" Value="Normal"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Resources>
+             Height="20">
+
     <Grid>
-        <StackPanel Grid.Row="0">
-            <!-- Main Menu -->
+        <StackPanel>
             <Menu>
-                <MenuItem Header="_File" >
-                    <MenuItem Header="_New Question Pack" Icon="{fa:Icon File}"/>
+                <MenuItem Header="_Pack Options">
+                    <MenuItem.Icon>
+                        <fa:IconImage Icon="BoxesPacking"/>
+                    </MenuItem.Icon>
+                    <MenuItem Header="_New Question Pack" Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.ShowConfigViewCommand}">
+                        <MenuItem.Icon>
+                            <fa:IconImage Icon="File"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Edit Pack" Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.ShowConfigViewCommand}">
+                        <MenuItem.Icon>
+                            <fa:IconImage Icon="Edit"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Save Packs" Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.SavePacksCommand}">
+                        <MenuItem.Icon>
+                            <fa:IconImage Icon="Save"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Load Packs" Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.LoadPacksCommand}">
+                        <MenuItem.Icon>
+                            <fa:IconImage Icon="FolderOpen"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator />
-                    <MenuItem Header="E_xit" Icon="{fa:Icon DoorOpen}" />
+                    <MenuItem Header="_Import from Web" Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.ConfigurationViewModel.ImportPackCommand}">
+                        <MenuItem.Icon>
+                            <fa:IconImage Icon="Download"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="E_xit" Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.ExitCommand}">
+                        <MenuItem.Icon>
+                            <fa:IconImage Icon="DoorOpen"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
-                <MenuItem Header="_Edit">
-                    <MenuItem Header="Add Question" />
-                    <MenuItem Header="Remove Question" InputGestureText="Ctrl+R" />
-                    <MenuItem Header="Set PackName" Command="{Binding PlayerViewModel.SetPackNameCommand}" />
+                
+                <Separator />
+
+                <MenuItem Header="_Quick Play" 
+                    Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.ShowPlayerViewCommand}">
+                    <MenuItem.Icon>
+                        <fa:IconImage Icon="Gamepad"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <Separator />
+
+                <MenuItem Header="_Fullscreen" Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.ToggleFullscreenCommand}">
+                    <MenuItem.Icon>
+                        <fa:IconImage Icon="Expand"/>
+                    </MenuItem.Icon>
                 </MenuItem>
             </Menu>
         </StackPanel>

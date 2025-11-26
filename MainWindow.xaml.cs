@@ -21,23 +21,7 @@ namespace Labb3
         public MainWindow()
             {
             InitializeComponent();
-            var menuView = new Views.MenuView();
-            mainMenuPanel.Children.Add(menuView);
-            var configView = new Views.ConfigurationView();
-            mainContentArea.Children.Add(configView);
-            
-            var pack = new QuestionPack("MyQuestionPack");
-
-            DataContext = new QuestionPackViewModel(pack);
-            }
-
-        public void ClearContentArea()
-            {
-            mainContentArea.Children.Clear();
-            }
-        public void SetContentArea(UserControl newContent)
-            {
-            mainContentArea.Children.Add(newContent);
+            DataContext = new MainWindowViewModel();
             }
         }
 }

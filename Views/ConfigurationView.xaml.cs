@@ -32,5 +32,6 @@ namespace Labb3.Views
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
+
+        }
 }
