@@ -15,6 +15,8 @@ using System.Windows.Input;
  * The imported questions are added to the main window's collection of question packs.
  * I had to refer to https://opentdb.com/api_config.php for API details alot.
  * I don't use Session Tokens here for simplicity, which may lead to duplicate questions on multiple imports.
+ * I did have to look up Html decoding in C# to properly display special characters in questions and answers.
+ * This ViewModel took up most of my time for this project due to the need to learn about HTTP requests, JSON parsing, etc.
  */
 namespace Labb3.ViewModels
     {
@@ -28,8 +30,8 @@ namespace Labb3.ViewModels
         private TriviaCategory selectedCategory;
         private string selectedDifficulty = "Any";
         private string statusMessage = "";
-        private string statusColor = "Black";
-        private string packName = "Imported Pack";
+        private string statusColor = "White";
+        private string packName = "";
 
         public ImportPackDialogViewModel(MainWindowViewModel mainWindowViewModel, Window dialog)
             {
