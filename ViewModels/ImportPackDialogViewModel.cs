@@ -9,7 +9,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows;
 using System.Windows.Input;
-
+/* 
+ * This ViewModel/Window handles importing question packs from the Open Trivia Database API.
+ * It allows users to select categories, difficulties, and the number of questions to import.
+ * The imported questions are added to the main window's collection of question packs.
+ * I had to refer to https://opentdb.com/api_config.php for API details alot.
+ * I don't use Session Tokens here for simplicity, which may lead to duplicate questions on multiple imports.
+ */
 namespace Labb3.ViewModels
     {
     class ImportPackDialogViewModel : BaseViewModel
@@ -21,7 +27,6 @@ namespace Labb3.ViewModels
         private int numberOfQuestions = 10;
         private TriviaCategory selectedCategory;
         private string selectedDifficulty = "Any";
-        private string selectedQuestionType = "Multiple Choice";
         private string statusMessage = "";
         private string statusColor = "Black";
         private string packName = "Imported Pack";
@@ -86,16 +91,6 @@ namespace Labb3.ViewModels
             set
                 {
                 selectedDifficulty = value;
-                RaisePropertyChanged();
-                }
-            }
-
-        public string SelectedQuestionType
-            {
-            get => selectedQuestionType;
-            set
-                {
-                selectedQuestionType = value;
                 RaisePropertyChanged();
                 }
             }
@@ -237,7 +232,7 @@ namespace Labb3.ViewModels
             if (SelectedDifficulty != "Any")
                 url += $"&difficulty={SelectedDifficulty.ToLower()}";
 
-            url += "&type=multiple";
+            url += "&type=multiple"; //Url type is always multiple choice for this app
 
             return url;
             }

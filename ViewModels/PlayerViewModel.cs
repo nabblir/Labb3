@@ -6,7 +6,12 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-
+/*
+ * This ViewModel is responsible for the player experience during the quiz.
+ * It manages the current question, answer options, and the quiz timer.
+ * I had to implement timers using DispatcherTimer(with the help of StackOverflow and to some extent ClaudeAI) to handle countdowns for each question and transitions due to WPF's single-threaded UI model.
+ * Timers where janky so the code might be WTF worthy in places, but it works well enough for the purpose of this application. Again, time constraints.
+ */
 namespace Labb3.ViewModels
     {
     class PlayerViewModel : BaseViewModel

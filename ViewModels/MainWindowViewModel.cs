@@ -8,12 +8,17 @@ using System.IO;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
-
+/*
+ * I decided to go against localpath to instead store lastpath in a simple text file called lastpath.txt - for crossplatform compatibility.
+ * I didn't have time to research if localpath is crossplatform compatible and wanted to keep it simple.
+ * Most of this code in here is about loading and saving question packs to file, as well as managing views and commands.
+ * Its not refactored to perfection but it works well for the purpose of this application. Again, time constraints.
+ */
 namespace Labb3.ViewModels
     {
     class MainWindowViewModel : BaseViewModel
         {
-        private const string SettingsFileName = "lastpath.txt"; // File to store the last used file path, used localpath before but think ahead and keep it simple and crossplatform:)
+        private const string SettingsFileName = "lastpath.txt";
 
         public ObservableCollection<QuestionPackViewModel> Packs { get; } = new();
 

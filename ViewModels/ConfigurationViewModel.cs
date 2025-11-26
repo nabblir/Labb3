@@ -3,7 +3,12 @@ using Labb3.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-
+/*
+ * This ViewModel manages the configuration of question packs.
+ * It allows users to create, play, delete, and modify question packs and their questions.
+ * I decided to bake in dialogs here for simplicity, rather than creating separate ViewModels for each dialog.
+ * Again, code is a bit rough around the edges but works well enough for the purpose of this application. Time constraints were a factor.
+ */
 namespace Labb3.ViewModels
     {
     class ConfigurationViewModel : BaseViewModel
@@ -106,7 +111,7 @@ namespace Labb3.ViewModels
             if (SelectedPack != null)
                 {
                 var newQuestion = new Question(
-                    "New Question?",
+                    "New Question",
                     "Correct Answer",
                     "Wrong Answer 1",
                     "Wrong Answer 2",
@@ -130,10 +135,7 @@ namespace Labb3.ViewModels
             {
             if (SelectedPack != null && mainWindowViewModel != null)
                 {
-                // Set the selected pack as active
                 mainWindowViewModel.ActivePack = SelectedPack;
-
-                // Switch to player view
                 mainWindowViewModel.CurrentView = mainWindowViewModel.PlayerViewModel;
                 }
             }
