@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Labb3.Dialogs"
         mc:Ignorable="d"
         x:ClassModifier="internal"
-        Title="Import Question Pack from API" 
+        Title="Import Question Pack from the Web" 
         Height="500" 
         Width="600"
         WindowStartupLocation="CenterOwner"
